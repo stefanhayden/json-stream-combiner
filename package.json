@@ -1,6 +1,6 @@
 {
   "name": "json-stream-combiner",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Easey way to take json objects or files and write them to a destination file.",
   "main": "src/index.js",
   "scripts": {

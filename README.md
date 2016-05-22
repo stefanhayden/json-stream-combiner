@@ -3,6 +3,8 @@ Json Stream Combiner
 
 A simple API to stream combine many json files, json objects, or array of json objects into a single output file.
 
+`npm install json-stream-combiner`
+
 If we have this input file:
 ```json
 [
