@@ -6,8 +6,8 @@ A simple API to stream combine many json files, json objects, or array of json o
 If we have this input file:
 ```json
 [
-	{ x: 1, y: 2 },
-	{ q: 1, w: 2 }
+	{ "x": 1, "y": 2 },
+	{ "q": 1, "w": 2 }
 ]
 ```
 
@@ -28,10 +28,10 @@ and then `output.json` will have this output:
 
 ```json
 [
-	{ x: 1, y: 2 },
-	{ q: 1, w: 2 }
-	{ a: 1, b: 2 },
-	{ c: 1, d: 2 }, 
-	{ e: 1, d: 2 }
+	{ "x": 1, "y": 2 },
+	{ "q": 1, "w": 2 },
+	{ "a": 1, "b": 2 },
+	{ "c": 1, "d": 2 }, 
+	{ "e": 1, "d": 2 }
 ]
 ```
