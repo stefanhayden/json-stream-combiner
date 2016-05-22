@@ -1,0 +1,26 @@
+{
+  "name": "json-stream-combiner",
+  "version": "1.0.0",
+  "description": "Easey way to take json objects or files and write them to a destination file.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "find ./tests -name '*.spec.js' | xargs mocha "
+  },
+  "keywords": [
+    "json",
+    "stream",
+    "combine"
+  ],
+  "author": "Stefan Hayden",
+  "license": "ISC",
+  "dependencies": {
+    "JSONStream": "^1.1.1",
+    "stream-array": "^1.1.2",
+    "stream-transform": "^0.1.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "mocha": "^2.4.5"
+  }
+}
