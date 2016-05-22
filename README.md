@@ -23,7 +23,9 @@ jsonStreamCombiner([
 	{ a: 1, b: 2 },
 	[ { c: 1, d: 2 }, { e: 1, d: 2 } ]
 ], 
-'/absolute/path/to/json/output.json');
+'/absolute/path/to/json/output.json').then(function() {
+	console.log('Done!');
+})
 ```
 
 and then `output.json` will have this output:
