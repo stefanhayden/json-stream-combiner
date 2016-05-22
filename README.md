@@ -17,7 +17,7 @@ We can pass that in like this:
 var jsonStreamCombiner = require('jsonStreamCombiner');
 
 jsonStreamCombiner([
-	'/absolute/path/to/json/output.json',
+	'/absolute/path/to/json/input.json',
 	{ a: 1, b: 2 },
 	[ { c: 1, d: 2 }, { e: 1, d: 2 } ]
 ], 
