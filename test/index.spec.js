@@ -18,7 +18,7 @@ describe('jsonStreamCombiner', function() {
 		return jsonStreamCombiner([ input1, input2 ], output)
 			.then(function() {
 				var outputData = fs.readFileSync(output).toString();
-				fs.unlink(output);
+				fs.unlinkSync(output);
 				return outputData;
 			}).should.eventually.equal(expectedOutput);
 	});
@@ -32,7 +32,7 @@ describe('jsonStreamCombiner', function() {
 		return jsonStreamCombiner([ inputJson1, input2 ], output)
 			.then(function() {
 				var outputData = fs.readFileSync(output).toString();
-				fs.unlink(output);
+				fs.unlinkSync(output);
 				return outputData;
 			}).should.eventually.equal(expectedOutput);
 	});
@@ -50,7 +50,7 @@ describe('jsonStreamCombiner', function() {
 		return jsonStreamCombiner([ inputJson1, inputJson2 ], output)
 			.then(function() {
 				var outputData = fs.readFileSync(output).toString();
-				fs.unlink(output);
+				fs.unlinkSync(output);
 				return outputData;
 			}).should.eventually.equal(expectedOutput);
 	});

@@ -4,13 +4,16 @@
   "description": "Easey way to take json objects or files and write them to a destination file.",
   "main": "src/index.js",
   "scripts": {
-    "test": "find ./tests -name '*.spec.js' | xargs mocha "
+    "test": "find ./test -name '*.spec.js' | xargs mocha "
   },
   "keywords": [
     "json",
     "stream",
     "combine"
   ],
+  "engines": {
+    "node": ">=16.x"
+  },
   "author": "Stefan Hayden",
   "license": "ISC",
   "dependencies": {
