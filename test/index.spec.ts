@@ -1,11 +1,7 @@
-// var chai = require('chai');
-var chaiAsPromised = require('chai-as-promised');
-var path = require('path');
-var fs = require('fs');
-var jsonStreamCombiner = require('../src/index.ts');
-
-chai.use(chaiAsPromised);
-chai.should();
+import { describe, expect, test } from '@jest/globals';
+import path from 'path';
+import fs from 'fs';
+import jsonStreamCombiner from '../src/index';
 
 var input1 = path.join(__dirname, './jsonFiles/input1.json'); 
 var input2 = path.join(__dirname, './jsonFiles/input2.json'); 
@@ -13,17 +9,17 @@ var output = path.join(__dirname, './jsonFiles/output.json');
 var expected = path.join(__dirname, './jsonFiles/expectedOutput.json'); 
 
 describe('jsonStreamCombiner', function() {
-	it('combine 2 json files to output file', function() {
+	test('combine 2 json files to output file', function() {
 		var expectedOutput = fs.readFileSync(expected).toString();
 		return jsonStreamCombiner([ input1, input2 ], output)
 			.then(function() {
 				var outputData = fs.readFileSync(output).toString();
 				fs.unlinkSync(output);
-				return outputData;
-			}).should.eventually.equal(expectedOutput);
+				expect(outputData).toMatch(expectedOutput)
+			});
 	});
 
-	it('combine 1 json file and 1 array of json objects to output file', function() {
+	test('combine 1 json file and 1 array of json objects to output file', function() {
 		var expectedOutput = fs.readFileSync(expected).toString();
 		var jsonInput1 = path.join(__dirname, './jsonFiles/jsonInput1.json'); 
 		var input1Data = fs.readFileSync(jsonInput1).toString();
@@ -33,11 +29,11 @@ describe('jsonStreamCombiner', function() {
 			.then(function() {
 				var outputData = fs.readFileSync(output).toString();
 				fs.unlinkSync(output);
-				return outputData;
-			}).should.eventually.equal(expectedOutput);
+				expect(outputData).toMatch(expectedOutput)
+			})
 	});
 
-	it('combine 1 json object and 1 array of json objects to output file', function() {
+	test('combine 1 json object and 1 array of json objects to output file', function() {
 		var expectedOutput = fs.readFileSync(expected).toString();
 		var jsonInput1 = path.join(__dirname, './jsonFiles/jsonInput1.json'); 
 		var input1Data = fs.readFileSync(jsonInput1).toString();
@@ -51,7 +47,7 @@ describe('jsonStreamCombiner', function() {
 			.then(function() {
 				var outputData = fs.readFileSync(output).toString();
 				fs.unlinkSync(output);
-				return outputData;
-			}).should.eventually.equal(expectedOutput);
+				expect(outputData).toMatch(expectedOutput)
+			});
 	});
 });

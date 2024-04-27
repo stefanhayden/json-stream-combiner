@@ -1,8 +1,8 @@
-const fs = require('fs');
+import fs from 'fs';
 import { transform } from 'stream-transform';
 import JSONStream from 'JSONStream';
 import streamify from 'stream-array';
-const cleanJsonPartial = require('./cleanJsonPartial');
+import cleanJsonPartial from './cleanJsonPartial';
 
 type FilesInput = (string | { [key: string | number]: any } | { [key: string | number]: any }[])[]
 
@@ -63,7 +63,7 @@ export default function jsonStreamCombiner(files: FilesInput, destinationFile: s
 						.pipe(JSONStream.stringify())
 						.pipe(transformer)
 						.pipe(ws);
-				} else {
+				} else if (typeof file === 'string') {
 					rs = fs.createReadStream(file);
 					rs.setEncoding('utf8');
 
