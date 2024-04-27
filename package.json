@@ -5,8 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
-    "test": "find ./test -name '*.spec.ts' | xargs mocha ",
-    "test2": "jest"
+    "test": "jest"
   },
   "keywords": [
     "json",
