@@ -16,7 +16,7 @@ If we have this input file:
 We can pass that in like this:
 
 ```javascript
-var jsonStreamCombiner = require('jsonStreamCombiner');
+const jsonStreamCombiner from 'jsonStreamCombiner';
 
 jsonStreamCombiner([
 	'/absolute/path/to/json/input.json',
