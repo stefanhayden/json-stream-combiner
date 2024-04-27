@@ -1,8 +1,8 @@
-var chai = require('chai');
-var chaiAsPromised = require("chai-as-promised");
+// var chai = require('chai');
+var chaiAsPromised = require('chai-as-promised');
 var path = require('path');
 var fs = require('fs');
-var jsonStreamCombiner = require('../src/index.js')
+var jsonStreamCombiner = require('../src/index.ts');
 
 chai.use(chaiAsPromised);
 chai.should();

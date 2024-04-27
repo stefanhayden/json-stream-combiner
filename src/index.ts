@@ -1,24 +1,26 @@
-var fs = require('fs');
-var { transform } = require('stream-transform');
-var JSONStream = require('JSONStream');
-var streamify = require('stream-array')
-var cleanJsonPartial = require('./cleanJsonPartial')
+const fs = require('fs');
+import { transform } from 'stream-transform';
+import JSONStream from 'JSONStream';
+import streamify from 'stream-array';
+const cleanJsonPartial = require('./cleanJsonPartial');
 
-module.exports = function jsonStreamCombiner(files, destinationFile) {
+type FilesInput = (string | { [key: string | number]: any } | { [key: string | number]: any }[])[]
+
+export default function jsonStreamCombiner(files: FilesInput, destinationFile: string) {
 
 	var p = Promise.resolve();
 	var isFirstCall = true;
 
-	files.forEach(function(file, fileIndex) {
-		p = p.then(function() {
-			return new Promise(function(resolve, reject) {
-				var transformer = transform(function(data, cb){
+	files.forEach(function (file, fileIndex) {
+		p = p.then(function () {
+			return new Promise(function (resolve, reject) {
+				var transformer = transform({ parallel: 1 }, function (data, cb) {
 					if (typeof data !== 'string') {
 						data = JSON.stringify(data, null, 4);
 					}
 
 					data = cleanJsonPartial(data);
-					data = JSON.parse('[' + data + ']')
+					data = JSON.parse('[' + data + ']');
 
 					if (data.length > 0) {
 						data = JSON.stringify(data, null, 4);
@@ -28,19 +30,19 @@ module.exports = function jsonStreamCombiner(files, destinationFile) {
 							data = data;
 							isFirstCall = false;
 						} else {
-							data = "\n," + data;
+							data = '\n,' + data;
 						}
 					} else {
 						data = '';
 					}
 
 					cb(null, data);
-				}, {parallel: 1});
+				});
 
 				var ws;
 				if (fileIndex === 0) {
 					ws = fs.createWriteStream(destinationFile, { flags: 'w' });
-					ws.write("[\n");
+					ws.write('[\n');
 				} else {
 					ws = fs.createWriteStream(destinationFile, { flags: 'a' });
 				}
@@ -50,7 +52,7 @@ module.exports = function jsonStreamCombiner(files, destinationFile) {
 				});
 
 				var rs;
-				if  (file instanceof Object) {
+				if (file instanceof Object) {
 					file = [file];
 				}
 
@@ -77,7 +79,7 @@ module.exports = function jsonStreamCombiner(files, destinationFile) {
 					});
 
 					if (fileIndex === files.length - 1) {
-						ws.end("\n]");
+						ws.end('\n]');
 					} else {
 						ws.end();
 					}
