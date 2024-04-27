@@ -1,5 +1,5 @@
 var fs = require('fs');
-var transform = require('stream-transform');
+var { transform } = require('stream-transform');
 var JSONStream = require('JSONStream');
 var streamify = require('stream-array')
 var cleanJsonPartial = require('./cleanJsonPartial')
